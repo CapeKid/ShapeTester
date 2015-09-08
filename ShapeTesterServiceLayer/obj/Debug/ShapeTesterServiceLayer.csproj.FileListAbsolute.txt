@@ -1,0 +1,5 @@
+C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\bin\Debug\ShapeTesterServiceLayer.dll
+C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\bin\Debug\ShapeTesterServiceLayer.pdb
+C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.csprojResolveAssemblyReference.cache
+C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.dll
+C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.pdb
