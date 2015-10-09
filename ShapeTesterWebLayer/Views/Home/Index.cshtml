@@ -1,52 +1,4 @@
-﻿@*<!DOCTYPE html>
-    <html ng-app="ShapeTesterWebLayer" ng-controller="HomePageController">
-    <head>
-        <title>MVC Test App</title>
-    </head>
-    <body>
-        <form ng-app="myApp" ng-controller="homePageController">
-            <label for="numberOne">First Number:</label>
-            <input id="numberOne" type="text" ng-model="models.numberOne" required />
-
-            <label for="numberTwo">Second Number:</label>
-            <input id="numberTwo" type="text" ng-model="models.numberTwo" required />
-
-            <button type="button" ng-click="add(models.numberOne,models.numberTwo)" value="Add them together"></button>
-
-            <p ng-bind="models.additionResult"></p>
-        </form>
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-        @Scripts.Render("~/bundles/ShapeTesterWebLayer")
-    </body>
-    </html>
-
-
-    <!DOCTYPE html>
-    <html ng-app="ShapeTesterWebLayer" ng-controller="HomePageController">
-    <head>
-        <title>MVC Test App</title>
-    </head>
-    <body>
-    <form ng-submit="register()">
-        <label for="numberOne">First Number:</label>
-        <input id="numberOne" type="text" ng-model="models.numberOne" required />
-
-        <label for="numberTwo">Second Number:</label>
-        <input id="numberTwo" type="text" ng-model="models.numberTwo" required />
-
-        <button type="button" ng-click="add(models.numberOne,models.numberTwo)" value="Add them together" ></button>
-
-        <p ng-bind="models.additionResult"></p>
-    </form>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-    @Scripts.Render("~/bundles/ShapeTesterWebLayer")
-    </body>
-    </html>*@
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>RazorApp</title>
@@ -54,12 +6,27 @@
 <body>
     <div class="row">
         <div class="col-md-4">
-            <h2>Add two numbers</h2>
-            @using (Html.BeginForm("AddNumbers", "Home"))
+            <h2>Comparison Options</h2>
+            
+            @using (Html.BeginForm("CollideTest", "Home"))
             {
-                @Html.TextBox("numberOne")
-                @Html.TextBox("numberTwo")
-                <input type="submit" value="Add Those Numbers!" />
+                @Html.TextBox("rectangleOne")
+                @Html.TextBox("rectangleTwo")
+                <input type="submit" value="Do they collide?" />
+            }
+
+            @using (Html.BeginForm("ContainTest", "Home"))
+            {
+                @Html.TextBox("rectangleOne")
+                @Html.TextBox("rectangleTwo")
+                <input type="submit" value="Do they contain?" />
+            }
+
+            @using (Html.BeginForm("AdjacentTest", "Home"))
+            {
+                @Html.TextBox("rectangleOne")
+                @Html.TextBox("rectangleTwo")
+                <input type="submit" value="Are they adjacent?" />
             }
         </div>
     </div>
