@@ -48,7 +48,7 @@ namespace ShapeTesterServiceLayer
 
         /// <summary>
         /// True if small rectangle is entirely contained within the larger rectangle
-        ///// </summary>
+        /// </summary>
         /// <param name="largerRectangle">The larger rectangle</param>
         /// <param name="smallerRectangle">The smaller rectangle</param>
         /// <returns>True if small rectangle is entirely contained within the larger rectangle, false otherwise</returns>

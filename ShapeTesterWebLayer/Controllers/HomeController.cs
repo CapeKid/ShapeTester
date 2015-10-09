@@ -22,8 +22,19 @@ namespace ShapeTesterWebLayer.Controllers
         
         public ActionResult CollideTest(string rectangleOne, string rectangleTwo)
         {
-            var doubleRectangle1 = new DoubleRectangle(0, 0, 1, 1);
-            var doubleRectangle2 = new DoubleRectangle(2, 2, 2, 2);
+            string[] rect1Info = rectangleOne.Split(',');
+            var doubleRectangle1 = new DoubleRectangle(
+                double.Parse(rect1Info[0]), 
+                double.Parse(rect1Info[1]),
+                double.Parse(rect1Info[2]),
+                double.Parse(rect1Info[3]));
+
+            string[] rect2Info = rectangleTwo.Split(',');
+            var doubleRectangle2 = new DoubleRectangle(
+                double.Parse(rect2Info[0]),
+                double.Parse(rect2Info[1]),
+                double.Parse(rect2Info[2]),
+                double.Parse(rect2Info[3]));
             //Do some AddingNumbers Work
             var isOverlaping = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(doubleRectangle1, doubleRectangle2);
 
@@ -33,8 +44,19 @@ namespace ShapeTesterWebLayer.Controllers
 
         public ActionResult ContainTest(string rectangleOne, string rectangleTwo)
         {
-            var doubleRectangle1 = new DoubleRectangle(0, 0, 5, 5);
-            var doubleRectangle2 = new DoubleRectangle(1, 1, 1, 1);
+            string[] rect1Info = rectangleOne.Split(',');
+            var doubleRectangle1 = new DoubleRectangle(
+                double.Parse(rect1Info[0]),
+                double.Parse(rect1Info[1]),
+                double.Parse(rect1Info[2]),
+                double.Parse(rect1Info[3]));
+
+            string[] rect2Info = rectangleTwo.Split(',');
+            var doubleRectangle2 = new DoubleRectangle(
+                double.Parse(rect2Info[0]),
+                double.Parse(rect2Info[1]),
+                double.Parse(rect2Info[2]),
+                double.Parse(rect2Info[3]));
             //Do some AddingNumbers Work
             var isOverlaping = RectangleMathHelper.DoesEitherRectangleContainTheOther(doubleRectangle1, doubleRectangle2);
 
@@ -45,8 +67,19 @@ namespace ShapeTesterWebLayer.Controllers
 
         public ActionResult AdjacentTest(string rectangleOne, string rectangleTwo)
         {
-            var doubleRectangle1 = new DoubleRectangle(0, 0, 2, 2);
-            var doubleRectangle2 = new DoubleRectangle(1, 1, 1, 1);
+            string[] rect1Info = rectangleOne.Split(',');
+            var doubleRectangle1 = new DoubleRectangle(
+                double.Parse(rect1Info[0]),
+                double.Parse(rect1Info[1]),
+                double.Parse(rect1Info[2]),
+                double.Parse(rect1Info[3]));
+
+            string[] rect2Info = rectangleTwo.Split(',');
+            var doubleRectangle2 = new DoubleRectangle(
+                double.Parse(rect2Info[0]),
+                double.Parse(rect2Info[1]),
+                double.Parse(rect2Info[2]),
+                double.Parse(rect2Info[3]));
             //Do some AddingNumbers Work
             var isOverlaping = RectangleMathHelper.IsEitherRectangleAdjacentToTheOther(doubleRectangle1, doubleRectangle2);
 

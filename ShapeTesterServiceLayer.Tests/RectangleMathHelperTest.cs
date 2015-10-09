@@ -405,7 +405,7 @@ namespace ShapeTesterServiceLayer.Tests
         #endregion
 
 
-        [TestMethod]
+        //[TestMethod]
         //public void DoesEitherRectangleContainTheOther()
         //{
         //    RectangleMathHelper.DoesEitherRectangleContainTheOther();
