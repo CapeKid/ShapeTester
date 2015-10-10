@@ -1,50 +1,24 @@
 ﻿@Scripts.Render("~/bundles/jquery")
-
+@Scripts.Render("~/Scripts/Controllers/HomePageController.js")
+@Scripts.Render("~/Scripts/Controllers/HomePageMethods.js")
 <!DOCTYPE html>
-<script src="~/Scripts/Controllers/HomePageController.js"></script>
 <html>
 <head>
     <title>RazorApp</title>
 </head>
 <body>
-    @*<div class="row">
-        <div class="col-md-4">
-            <h2>Comparison Options</h2>
-            
-            @using (Html.BeginForm("CollideTest", "Home"))
-            {
-                @Html.TextBox("rectangleOne")
-                @Html.TextBox("rectangleTwo")
-                <input type="submit" value="Do they collide?" />
-            }
-
-            @using (Html.BeginForm("ContainTest", "Home"))
-            {
-                @Html.TextBox("rectangleOne")
-                @Html.TextBox("rectangleTwo")
-                <input type="submit" value="Do they contain?" />
-            }
-
-            @using (Html.BeginForm("AdjacentTest", "Home"))
-            {
-                @Html.TextBox("rectangleOne")
-                @Html.TextBox("rectangleTwo")
-                <input type="submit" value="Are they adjacent?" />
-            }
-        </div>
-    </div>*@
     <div>
         <section style="border-style: solid; border-width: 2px; width: 1024px;">
             <canvas HEIGHT="740" WIDTH="1024" ID="canvas">
                 Your browser is not supporting HTML5 Canvas .Upgrade Browser to view this program or check with Chrome or in Firefox.
             </canvas>
 
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleOne()">Draw Rectangle One</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleTwo()">Draw Rectangle Two</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestOverlap()">Rectangles overlap?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestContain()">Rectangles contain?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAdjacent()">Rectangles adjacent?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAll()">Test All</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleOne(rect1, rect2)">Draw Rectangle One</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleTwo(rect1, rect2)">Draw Rectangle Two</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestOverlap(rect1, rect2)">Rectangles overlap?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestContain(rect1, rect2)">Rectangles contain?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAdjacent(rect1, rect2)">Rectangles adjacent?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAll(rect1, rect2)">Test All</button>
         </section>
     </div>
 </body>

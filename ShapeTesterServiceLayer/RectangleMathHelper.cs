@@ -22,7 +22,7 @@ namespace ShapeTesterServiceLayer
             bool xOverlap = leftOfRect1InsideRect2Width || leftOfRect2InsideRect1Width;
 
             bool topOfRect1InsideRect2Height = ValuesOverlap(rect1.Y, rect2.Y, rect2.Y + rect2.Height);
-            bool topOfRect2InsideRect1Height = ValuesOverlap(rect2.Y, rect1.Y, rect1.Y + rect2.Height);
+            bool topOfRect2InsideRect1Height = ValuesOverlap(rect2.Y, rect1.Y, rect1.Y + rect1.Height);
             bool yOverlap = topOfRect1InsideRect2Height || topOfRect2InsideRect1Height;
 
             bool rectanglesIntersect = xOverlap && yOverlap;
