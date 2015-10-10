@@ -40,17 +40,20 @@ rect2.Height = 0
 
 rectangles = [rect1, rect2]
 
-
 drag = false;
 
+//Create handlers for mouse events
+var downHandler;
+var upHandler;
+var moveHandler;
 
 //Initialize the Canvas and Mouse events for Canvas
 function DrawRectangleOne() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     
-    //RemoveMouseListeners(mouseDown2, mouseUp2, mouseMove2);
-    AddMouseListeners(mouseDown, mouseUp, mouseMove, 0);
+    RemoveMouseListeners();
+    AddMouseListeners(0);
     
     return setInterval(function () { draw(0); }, 10);
 }
@@ -59,24 +62,35 @@ function DrawRectangleTwo() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
     
-    RemoveMouseListeners(mouseDown, mouseUp, mouseMove);
-    AddMouseListeners(mouseDown2, mouseUp2, mouseMove2);
+    RemoveMouseListeners();
+    AddMouseListeners(1);
 
-    return setInterval(draw2, 10);
+    return setInterval(function () { draw(1); }, 10);
 }
 
 
-function AddMouseListeners(downEvent, upEvent, moveEvent, rectangleNumber) {
-    canvas.addEventListener('mousedown', function (e) { downEvent(e, rectangleNumber); }, false);
-    canvas.addEventListener('mouseup', function (e) { upEvent(e, rectangleNumber); }, false);
-    canvas.addEventListener('mousemove', function (e) { moveEvent(e, rectangleNumber); }, false);
+function AddMouseListeners(rectangleNumber) {
+    downHandler = function (e) {
+        mouseDown(e, rectangleNumber);
+    };
+    upHandler = function (e) {
+        mouseUp(e, rectangleNumber);
+    };
+
+    moveHandler = function (e) {
+        mouseMove(e, rectangleNumber);
+    };
+    
+    canvas.addEventListener('mousedown', downHandler, false);
+    canvas.addEventListener('mouseup', upHandler, false);
+    canvas.addEventListener('mousemove', moveHandler, false);
 }
 
 function RemoveMouseListeners(downEvent, upEvent, moveEvent)
 {
-    canvas.removeEventListener('mousedown', downEvent, false);
-    canvas.removeEventListener('mouseup', upEvent, false);
-    canvas.removeEventListener('mousemove', moveEvent, false);
+    canvas.removeEventListener('mousedown', downHandler, false);
+    canvas.removeEventListener('mouseup', upHandler, false);
+    canvas.removeEventListener('mousemove', moveHandler, false);
 }
 
 
@@ -111,57 +125,36 @@ function mouseMove(e, rectangleNumber) {
 
 //Draw all Shaps,Text and add images 
 function draw(rectangleNumber) {
-    //alert("!");
     ctx.beginPath();
-    ctx.fillStyle = "#FF0000";
+    if(rectangleNumber == 0)
+        ctx.fillStyle = "#FF0000";
+    if (rectangleNumber == 1)
+        ctx.fillStyle = "#0000FF";
+
     ctx.rect(rectangles[rectangleNumber].startX, rectangles[rectangleNumber].startY, rectangles[rectangleNumber].Width, rectangles[rectangleNumber].Height);
 
     ctx.fill();
 }
 
 
-
-//Mouse down event method
-function mouseDown2(e) {
-    rect2.Width = 0;
-    rect2.Height = 0;
-    rect2.startX = e.pageX - this.offsetLeft;
-    rect2.startY = e.pageY - this.offsetTop;
-
-    drag = true;
-}
-//Mouse UP event Method
-function mouseUp2() {
-    drag = false;
-}
-
-//mouse Move Event method
-function mouseMove2(e) {
-    if (drag) {
-        rect2.Width = (e.pageX - this.offsetLeft) - rect2.startX;
-        rect2.Height = (e.pageY - this.offsetTop) - rect2.startY;
-
-        draw2();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-}
-
-
-//Draw all Shaps,Text and add images 
-function draw2() {
-    ctx.beginPath();
-    ctx.fillStyle = "#0000FF";
-    ctx.rect(rect2.startX, rect2.startY, rect2.Width, rect2.Height);
-
-    ctx.fill();
-}
-
-
-
-
-
 //save as image file 
 function SaveRectangle() { 
-    jQuery.post("/Home/RectOne", { X: rect1.startX, Y: rect1.startY, Height: rect1.Height, Width: rect1.Width }, function (data) {
+    jQuery.post("/Home/ProcessRectangles",
+        {
+            rect1 : {
+                X: rect1.startX,
+                Y: rect1.startY,
+                Height: rect1.Height,
+                Width: rect1.Width
+            },
+            
+            rect2: {
+                X: rect1.startX,
+                Y: rect1.startY,
+                Height: rect1.Height,
+                Width: rect1.Width
+            },
+        }
+        , function (data) {
     });
 }
