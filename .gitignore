@@ -17,3 +17,6 @@
 /ShapeTesterServiceLayer.Tests/bin/Debug/*
 /ShapeTesterWebLayer/bin/Debug/*
 /ShapeTesterWebLayer.Tests/bin/Debug/*
+
+/ShapeTesterWebLayer/bin/*
+/ShapeTesterWebLayer/obj/Debug/*
