@@ -74,6 +74,7 @@ namespace ShapeTesterWebLayer.Controllers
             return Content(isContain.ToString());
         }
 
+        
         public ActionResult TestAll(Rectangle rect1, Rectangle rect2)
         {
             var doubleRectangle1 = new DoubleRectangle(
@@ -88,12 +89,15 @@ namespace ShapeTesterWebLayer.Controllers
                 rect2.Width,
                 rect2.Height);
 
-            var isOverlaping = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(doubleRectangle1, doubleRectangle2);
+            var isOverlap = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(doubleRectangle1, doubleRectangle2);
             var isContain = RectangleMathHelper.DoesEitherRectangleContainTheOther(doubleRectangle1, doubleRectangle2);
             var isAdjacent = RectangleMathHelper.IsEitherRectangleAdjacentToTheOther(doubleRectangle1, doubleRectangle2);
-
-            //Present it to the user
-            return Content(string.Format("overlap: {0}\r\ncontain: {1}\r\nadjacent: {2}", isOverlaping, isContain, isAdjacent));
+            
+            return Json(new {
+                isOverlap = isOverlap,
+                isContain = isContain,
+                isAdjacent = isAdjacent
+            });
         }
         
     }

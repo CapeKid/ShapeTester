@@ -8,7 +8,6 @@
 </head>
 <body>
     <div>
-        @*TODO: Maybe a partial cshtml here?*@
         <section style="border-style: solid; border-width: 2px; width: 1024px;">
             <canvas HEIGHT="740" WIDTH="1024" ID="canvas">
                 Your browser is not supporting HTML5 Canvas .Upgrade Browser to view this program or check with Chrome or in Firefox.
@@ -16,24 +15,19 @@
             
             <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="rectangleCanvas.drawRectangleOne(rect1, rect2)">Draw Rectangle One</button>
             <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="rectangleCanvas.drawRectangleTwo(rect1, rect2)">Draw Rectangle Two</button>
-            @*<button style="border-style: solid; border-width: 2px; width: 100px;" onClick="evaluateRectangles.testOverlap(rect1, rect2)">Rectangles overlap?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="evaluateRectangles.testContain(rect1, rect2)">Rectangles contain?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="evaluateRectangles.testAdjacent(rect1, rect2)">Rectangles adjacent?</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="evaluateRectangles.testAll(rect1, rect2)">Test All</button>*@
         </section>
-        @*TODO: Maybe a partial cshtml here?*@
         <table id="results">
             <tr>
                 <td>Overlap?</td>
-                <td id="isOverlap">False</td>
+                <td id="isOverlap">false</td>
             </tr>
             <tr>
                 <td>Contain?</td>
-                <td id="isContain">False</td>
+                <td id="isContain">false</td>
             </tr>
             <tr>
                 <td>Adjacent?</td>
-                <td id="isAdjacent">False</td>
+                <td id="isAdjacent">false</td>
             </tr>
         </table>
     </div>

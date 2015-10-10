@@ -87,10 +87,10 @@
     //Mouse up event method
     function mouseUp(e, rectangle) {
         drag = false;
-        //evaluateRectangles.testAll(rect1, rect2);
-        evaluateRectangles.testAdjacent(rect1, rect2);
-        evaluateRectangles.testContain(rect1, rect2);
-        evaluateRectangles.testOverlap(rect1, rect2);
+        evaluateRectangles.testAll(rect1, rect2);
+        //evaluateRectangles.testAdjacent(rect1, rect2);
+        //evaluateRectangles.testContain(rect1, rect2);
+        //evaluateRectangles.testOverlap(rect1, rect2);
     }
 
     //Mouse move event method

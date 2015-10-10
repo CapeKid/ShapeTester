@@ -84,6 +84,9 @@
                 },
             }
             , function (data) {
+                $("#isOverlap").text(data.isOverlap);
+                $("#isContain").text(data.isContain);
+                $("#isAdjacent").text(data.isAdjacent);
             });
     }
 }
