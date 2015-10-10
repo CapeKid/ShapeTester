@@ -20,11 +20,6 @@ namespace ShapeTesterWebLayer.Controllers
         {
             return View();
         }
-        
-        public ActionResult ProcessRectangles(Rectangle rect1, Rectangle rect2)
-        {
-            return Content(string.Format("" + rect1.X));
-        }
 
         public ActionResult CollideTest(string rectangleOne, string rectangleTwo)
         {

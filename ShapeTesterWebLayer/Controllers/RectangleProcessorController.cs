@@ -16,9 +16,26 @@ namespace ShapeTesterWebLayer.Controllers
             RectangleMathHelper = rectangleMathHelper;
         }
 
-        public ActionResult Test(Rectangle rectangle)
+        public ActionResult ProcessRectangles(Rectangle rect1, Rectangle rect2)
         {
-            return Content(string.Format("test"));
+            //TODO: Maybe add some converter here
+            var doubleRectangle1 = new DoubleRectangle(
+                rect1.X,
+                rect1.Y,
+                rect1.Width,
+                rect1.Height);
+
+            var doubleRectangle2 = new DoubleRectangle(
+                rect2.X,
+                rect2.Y,
+                rect2.Width,
+                rect2.Height);
+
+            //Do some AddingNumbers Work
+            var isOverlaping = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(doubleRectangle1, doubleRectangle2);
+
+            //Present it to the user
+            return Content(isOverlaping.ToString());
         }
     }
 }

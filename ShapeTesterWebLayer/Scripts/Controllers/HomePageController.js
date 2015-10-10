@@ -139,7 +139,7 @@ function draw(rectangleNumber) {
 
 //save as image file 
 function SaveRectangle() { 
-    jQuery.post("/Home/ProcessRectangles",
+    jQuery.post("/RectangleProcessor/ProcessRectangles",
         {
             rect1 : {
                 X: rect1.startX,
@@ -149,12 +149,13 @@ function SaveRectangle() {
             },
             
             rect2: {
-                X: rect1.startX,
-                Y: rect1.startY,
-                Height: rect1.Height,
-                Width: rect1.Width
+                X: rect2.startX,
+                Y: rect2.startY,
+                Height: rect2.Height,
+                Width: rect2.Width
             },
         }
         , function (data) {
+            alert(data);
     });
 }

@@ -7,12 +7,12 @@ namespace ShapeTesterWebLayer.ViewModel
 {
     public class Rectangle
     {
-        public string X { get; set; }
+        public double X { get; set; }
 
-        public string Y { get; set; }
+        public double Y { get; set; }
 
-        public string Width { get; set; }
+        public double Width { get; set; }
 
-        public string Height { get; set; }
+        public double Height { get; set; }
     }
 }
