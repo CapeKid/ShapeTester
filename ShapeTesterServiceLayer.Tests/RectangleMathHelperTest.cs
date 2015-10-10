@@ -402,6 +402,29 @@ namespace ShapeTesterServiceLayer.Tests
             var isOverlapping = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(rectangle1, rectangle2);
             Assert.IsTrue(isOverlapping);
         }
+
+        [TestMethod]
+        public void DoesEitherRectangleOverlapTheOther_OneContainsTheOther_ReturnsFalse()
+        {
+            /*Picture of rectangle location
+            1111
+            1001
+            1001
+            1111
+            */
+            DoubleRectangle rectangle1 = new DoubleRectangle(0, 0, 4, 4);
+
+            /*Picture of rectangle location
+            0000
+            0220
+            0220
+            0000
+            */
+            DoubleRectangle rectangle2 = new DoubleRectangle(1, 1, 1, 1);
+
+            var isOverlapping = RectangleMathHelper.DoesEitherRectangleOverlapTheOther(rectangle1, rectangle2);
+            Assert.IsFalse(isOverlapping);
+        }
         #endregion
 
 
