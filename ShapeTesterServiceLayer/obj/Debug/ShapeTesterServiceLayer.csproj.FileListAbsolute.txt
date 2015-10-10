@@ -3,3 +3,8 @@ C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\bin\Debug\S
 C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.csprojResolveAssemblyReference.cache
 C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.dll
 C:\Users\smicalizzi\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.pdb
+C:\Users\seth3\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\bin\Debug\ShapeTesterServiceLayer.dll
+C:\Users\seth3\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\bin\Debug\ShapeTesterServiceLayer.pdb
+C:\Users\seth3\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.csprojResolveAssemblyReference.cache
+C:\Users\seth3\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.dll
+C:\Users\seth3\Dropbox\Test\ShapeTester\ShapeTesterServiceLayer\obj\Debug\ShapeTesterServiceLayer.pdb
