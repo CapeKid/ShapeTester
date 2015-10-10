@@ -1,7 +1,5 @@
 using System;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
-using ShapeTesterServiceLayer;
 using ShapeTesterServiceLayer.Interfaces;
 using RectangleMathHelper = ShapeTesterServiceLayer.RectangleMathHelper;
 

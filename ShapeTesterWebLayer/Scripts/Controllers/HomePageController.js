@@ -1,5 +1,4 @@
-﻿//TODO: Pass object instead of use array
-//TODO: Proper namespacing of javascript
+﻿//TODO: Proper namespacing of javascript
 
 //public Canvas object to use in all the functions.
 //Main canvas declaration 
