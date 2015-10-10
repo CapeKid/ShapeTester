@@ -24,7 +24,7 @@ namespace ShapeTesterServiceLayer.SharedObjects
 
         public double RightSideX => X + Width;
 
-        public double TopY => Y + Height;
+        public double BotY => Y + Height;
 
         public Point UpperLeft => new Point(X, Y + Height);
 

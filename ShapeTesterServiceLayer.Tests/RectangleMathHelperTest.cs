@@ -537,7 +537,7 @@ namespace ShapeTesterServiceLayer.Tests
             2020
             2220
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 3, 4);
+            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 2, 3);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle1, rectangle2);
             Assert.IsFalse(isContained);
@@ -560,7 +560,7 @@ namespace ShapeTesterServiceLayer.Tests
             2222
             0000
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 4, 3);
+            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 3, 2);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle1, rectangle2);
             Assert.IsFalse(isContained);
@@ -583,7 +583,7 @@ namespace ShapeTesterServiceLayer.Tests
             0202
             0222
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(1, 0, 3, 4);
+            DoubleRectangle rectangle2 = new DoubleRectangle(1, 0, 2, 3);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle2, rectangle1);
             Assert.IsFalse(isContained);
@@ -606,7 +606,7 @@ namespace ShapeTesterServiceLayer.Tests
             2002
             2222
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(0, 1, 4, 3);
+            DoubleRectangle rectangle2 = new DoubleRectangle(0, 1, 3, 2);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle2, rectangle1);
             Assert.IsFalse(isContained);
@@ -629,7 +629,7 @@ namespace ShapeTesterServiceLayer.Tests
             2020
             2220
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 3, 4);
+            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 2, 3);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle2, rectangle1);
             Assert.IsFalse(isContained);
@@ -652,7 +652,7 @@ namespace ShapeTesterServiceLayer.Tests
             2222
             0000
             */
-            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 4, 3);
+            DoubleRectangle rectangle2 = new DoubleRectangle(0, 0, 3, 2);
 
             var isContained = RectangleMathHelper.DoesEitherRectangleContainTheOther(rectangle2, rectangle1);
             Assert.IsFalse(isContained);

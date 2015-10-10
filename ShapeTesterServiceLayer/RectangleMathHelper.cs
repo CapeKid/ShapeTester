@@ -17,6 +17,9 @@ namespace ShapeTesterServiceLayer
         /// <returns>The rectangles overlap</returns>
         public bool DoesEitherRectangleOverlapTheOther(DoubleRectangle rect1, DoubleRectangle rect2)
         {
+            if (IsEitherRectangleAdjacentToTheOther(rect1, rect2))
+                return true;
+
             bool leftOfRect1InsideRect2Width = ValuesOverlap(rect1.X, rect2.X, rect2.X + rect2.Width);
             bool leftOfRect2InsideRect1Width = ValuesOverlap(rect2.X, rect1.X, rect1.X + rect1.Width);
             bool xOverlap = leftOfRect1InsideRect2Width || leftOfRect2InsideRect1Width;
@@ -54,11 +57,11 @@ namespace ShapeTesterServiceLayer
         /// <returns>True if small rectangle is entirely contained within the larger rectangle, false otherwise</returns>
         private bool ContainedWithin(DoubleRectangle largerRectangle, DoubleRectangle smallerRectangle)
         {
-            bool lowerLeftCheck = largerRectangle.LowerLeft.X < smallerRectangle.LowerLeft.X && largerRectangle.LowerLeft.Y < smallerRectangle.LowerLeft.Y;
-            bool upperLeftCheck = largerRectangle.UpperLeft.X < smallerRectangle.UpperLeft.X && largerRectangle.UpperLeft.Y > smallerRectangle.UpperLeft.Y;
+            bool lowerLeftCheck = largerRectangle.LowerLeft.X <= smallerRectangle.LowerLeft.X && largerRectangle.LowerLeft.Y <= smallerRectangle.LowerLeft.Y;
+            bool upperLeftCheck = largerRectangle.UpperLeft.X <= smallerRectangle.UpperLeft.X && largerRectangle.UpperLeft.Y >= smallerRectangle.UpperLeft.Y;
 
-            bool lowerRightCheck = largerRectangle.LowerRight.X > smallerRectangle.LowerRight.X && largerRectangle.LowerRight.Y < smallerRectangle.LowerRight.Y;
-            bool upperRightCheck = largerRectangle.UpperRight.X > smallerRectangle.UpperRight.X && largerRectangle.UpperRight.Y > smallerRectangle.UpperRight.Y;
+            bool lowerRightCheck = largerRectangle.LowerRight.X >= smallerRectangle.LowerRight.X && largerRectangle.LowerRight.Y <= smallerRectangle.LowerRight.Y;
+            bool upperRightCheck = largerRectangle.UpperRight.X >= smallerRectangle.UpperRight.X && largerRectangle.UpperRight.Y >= smallerRectangle.UpperRight.Y;
 
             return lowerLeftCheck && upperLeftCheck && lowerRightCheck && upperRightCheck;
         }
@@ -74,10 +77,21 @@ namespace ShapeTesterServiceLayer
             bool overlapsWithRect2Left = rect1.X.Equals(rect2.X) || rect1.RightSideX.Equals(rect2.X);
             bool overlapsWithRect2Right = rect1.X.Equals(rect2.RightSideX) || rect1.RightSideX.Equals(rect2.RightSideX);
 
-            bool overlapsWithRect2Bottom = rect1.Y.Equals(rect2.Y) || rect1.TopY.Equals(rect2.Y);
-            bool overlapsWithRect2Top = rect1.Y.Equals(rect2.TopY) || rect1.TopY.Equals(rect2.TopY);
+            bool overlapsWithRect2Top = rect1.Y.Equals(rect2.Y) || rect1.BotY.Equals(rect2.Y);
+            bool overlapsWithRect2Bottom = rect1.Y.Equals(rect2.BotY) || rect1.BotY.Equals(rect2.BotY);
 
-            return overlapsWithRect2Left || overlapsWithRect2Right || overlapsWithRect2Bottom || overlapsWithRect2Top;
+            if (overlapsWithRect2Left || overlapsWithRect2Right)
+            {
+                bool isWithinYAxis = ValuesOverlap(rect1.Y, rect2.Y, rect2.BotY) || ValuesOverlap(rect1.BotY, rect2.Y, rect2.BotY);
+                return isWithinYAxis;
+            }
+
+            if(overlapsWithRect2Bottom || overlapsWithRect2Top)
+            {
+                bool isWithinXAxis = ValuesOverlap(rect1.X, rect2.X, rect2.RightSideX) || ValuesOverlap(rect1.RightSideX, rect2.X, rect2.RightSideX);
+                return isWithinXAxis;
+            }
+            return false;
         }
     }
 }

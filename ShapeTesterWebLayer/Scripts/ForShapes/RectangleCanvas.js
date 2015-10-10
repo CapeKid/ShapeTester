@@ -1,110 +1,114 @@
-﻿//TODO: Proper namespacing of javascript
-
-//public Canvas object to use in all the functions.
-//Main canvas declaration 
-var canvas;
-var ctx;
-
-// Rectangle number one
-rect1 = {},
-rect1.Width = 0
-rect1.Height = 0
-rect1.Color = "#FF0000";
-
-// Rectangle number two
-rect2 = {},
-rect2.Width = 0
-rect2.Height = 0
-rect2.Color = "#0000FF";
-
-drag = false;
-
-//Create handlers for mouse events
-var downHandler;
-var upHandler;
-var moveHandler;
-
-//Initialize the Canvas and Mouse events for Canvas
-function DrawRectangleOne() {
-    InitializeCanvas();
-    RemoveMouseListeners();
-    AddMouseListeners(rect1);
-    
-    return setInterval(function () { draw(rect1); }, 10);
-}
-
-function DrawRectangleTwo() {
-    InitializeCanvas();
-    RemoveMouseListeners();
-    AddMouseListeners(rect2);
-
-    return setInterval(function () { draw(rect2); }, 10);
-}
-
-
-function InitializeCanvas()
+﻿var rectangleCanvas = new function ()
 {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-}
+    //public Canvas object to use in all the functions.
+    //Main canvas declaration 
+    var canvas;
+    var canvasContext;
 
-//Add new listeners for the new rectangle to draw
-function AddMouseListeners(rectangle) {
-    downHandler = function (e) {
-        mouseDown(e, rectangle);
-    };
-    upHandler = function (e) {
-        mouseUp(e, rectangle);
-    };
+    // Rectangle number one
+    rect1 = {},
+    rect1.Width = 0
+    rect1.Height = 0
+    rect1.Color = "#FF0000";
 
-    moveHandler = function (e) {
-        mouseMove(e, rectangle);
-    };
-    
-    canvas.addEventListener('mousedown', downHandler, false);
-    canvas.addEventListener('mouseup', upHandler, false);
-    canvas.addEventListener('mousemove', moveHandler, false);
-}
+    // Rectangle number two
+    rect2 = {},
+    rect2.Width = 0
+    rect2.Height = 0
+    rect2.Color = "#0000FF";
 
-//Remove listeners attached from the previous rectangle drawing
-function RemoveMouseListeners(downEvent, upEvent, moveEvent)
-{
-    canvas.removeEventListener('mousedown', downHandler, false);
-    canvas.removeEventListener('mouseup', upHandler, false);
-    canvas.removeEventListener('mousemove', moveHandler, false);
-}
-
-
-//Mouse down event method
-function mouseDown(e, rectangle) {
-    
-    rectangle.Width = 0;
-    rectangle.Height = 0;
-    rectangle.startX = e.pageX - canvas.offsetLeft;
-    rectangle.startY = e.pageY - canvas.offsetTop;
-    
-    drag = true;
-}
-//Mouse up event method
-function mouseUp(e, rectangle) {
     drag = false;
-}
 
-//Mouse move event method
-function mouseMove(e, rectangle) {
+    //Create handlers for mouse events
+    var downHandler;
+    var upHandler;
+    var moveHandler;
 
-    if (drag) {
-        rectangle.Width = (e.pageX - canvas.offsetLeft) - rectangle.startX;
-        rectangle.Height = (e.pageY - canvas.offsetTop) - rectangle.startY;
-        
-        draw(rectangle);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //Initialize the Canvas and Mouse events for Canvas
+    this.drawRectangleOne = function drawRectangleOne() {
+        initializeCanvas();
+        removeMouseListeners();
+        addMouseListeners(rect1);
+    
+        return setInterval(function () { draw(rect1); }, 10);
     }
-}
 
-function draw(rectangle) {
-    ctx.beginPath();
-    ctx.fillStyle = rectangle.Color
-    ctx.rect(rectangle.startX, rectangle.startY, rectangle.Width, rectangle.Height);
-    ctx.fill();
+    this.drawRectangleTwo = function drawRectangleTwo() {
+        initializeCanvas();
+        removeMouseListeners();
+        addMouseListeners(rect2);
+
+        return setInterval(function () { draw(rect2); }, 10);
+    }
+
+    function initializeCanvas()
+    {
+        canvas = document.getElementById("canvas");
+        canvasContext = canvas.getContext("2d");
+    }
+
+    //Add new listeners for the new rectangle to draw
+    function addMouseListeners(rectangle) {
+        downHandler = function (e) {
+            mouseDown(e, rectangle);
+        };
+        upHandler = function (e) {
+            mouseUp(e, rectangle);
+        };
+
+        moveHandler = function (e) {
+            mouseMove(e, rectangle);
+        };
+    
+        canvas.addEventListener('mousedown', downHandler, false);
+        canvas.addEventListener('mouseup', upHandler, false);
+        canvas.addEventListener('mousemove', moveHandler, false);
+    }
+
+    //Remove listeners attached from the previous rectangle drawing
+    function removeMouseListeners(downEvent, upEvent, moveEvent)
+    {
+        canvas.removeEventListener('mousedown', downHandler, false);
+        canvas.removeEventListener('mouseup', upHandler, false);
+        canvas.removeEventListener('mousemove', moveHandler, false);
+    }
+
+    //Mouse down event method
+    function mouseDown(e, rectangle) {
+    
+        rectangle.Width = 0;
+        rectangle.Height = 0;
+        rectangle.startX = e.pageX - canvas.offsetLeft;
+        rectangle.startY = e.pageY - canvas.offsetTop;
+    
+        drag = true;
+    }
+
+    //Mouse up event method
+    function mouseUp(e, rectangle) {
+        drag = false;
+        //evaluateRectangles.testAll(rect1, rect2);
+        evaluateRectangles.testAdjacent(rect1, rect2);
+        evaluateRectangles.testContain(rect1, rect2);
+        evaluateRectangles.testOverlap(rect1, rect2);
+    }
+
+    //Mouse move event method
+    function mouseMove(e, rectangle) {
+        if (drag) {
+            rectangle.Width = (e.pageX - canvas.offsetLeft) - rectangle.startX;
+            rectangle.Height = (e.pageY - canvas.offsetTop) - rectangle.startY;
+        
+            draw(rectangle);
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    //Draw the rectangle
+    function draw(rectangle) {
+        canvasContext.beginPath();
+        canvasContext.strokeStyle = rectangle.Color
+        canvasContext.rect(rectangle.startX, rectangle.startY, rectangle.Width, rectangle.Height);
+        canvasContext.stroke();
+    }
 }
