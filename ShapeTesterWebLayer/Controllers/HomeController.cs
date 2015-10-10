@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ShapeTesterServiceLayer;
 using ShapeTesterServiceLayer.Interfaces;
 using ShapeTesterServiceLayer.SharedObjects;
+using ShapeTesterWebLayer.ViewModel;
 
 namespace ShapeTesterWebLayer.Controllers
 {
@@ -19,7 +20,12 @@ namespace ShapeTesterWebLayer.Controllers
         {
             return View();
         }
-        
+
+        public ActionResult RectOne(Rectangle rect1)
+        {
+            return Content(string.Format("" + rect1.X));
+        }
+
         public ActionResult CollideTest(string rectangleOne, string rectangleTwo)
         {
             string[] rect1Info = rectangleOne.Split(',');

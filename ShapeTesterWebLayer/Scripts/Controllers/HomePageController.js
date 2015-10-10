@@ -23,8 +23,6 @@
 //Main canvas declaration 
 var canvas;
 var ctx;
-var x = 75;
-var y = 50;
 //Width and Height of the canvas
 var WIDTH = 1024;
 var HEIGHT = 740;
@@ -33,6 +31,8 @@ var HEIGHT = 740;
 
 // Rectangle array
 rect = {},
+rect.Width = 0
+rect.Height = 0
 //drag= false default to test for the draging
 drag = false;
 // Array to store all the old Shapes drawing details
@@ -43,13 +43,9 @@ var rectHArray = new Array();
 var rectColor = new Array();
 var Text_ARR = new Array();
 
-//to add the Image
-var imageObj = new Image();
 //Initialize the Canvas and Mouse events for Canvas
 function DrawRectangleOne() {
     canvas = document.getElementById("canvas");
-    x = 5;
-    y = 5;
     ctx = canvas.getContext("2d");
     canvas.addEventListener('mousedown', mouseDown, false);
     canvas.addEventListener('mouseup', mouseUp, false);
@@ -65,6 +61,8 @@ function DrawRectangleOne() {
 
 //Mouse down event method
 function mouseDown(e) {
+    rect.Width = 0;
+    rect.Height = 0;
     rect.startX = e.pageX - this.offsetLeft;
     rect.startY = e.pageY - this.offsetTop;
     
@@ -72,23 +70,22 @@ function mouseDown(e) {
 }
 //Mouse UP event Method
 function mouseUp() {
-    rectStartXArray[rectStartXArray.length] = rect.startX;
-    rectStartYArray[rectStartYArray.length] = rect.startY;
-    rectWArray[rectWArray.length] = rect.w;
-    rectHArray[rectHArray.length] = rect.h;
+    //rectStartXArray[rectStartXArray.length] = rect.startX;
+    //rectStartYArray[rectStartYArray.length] = rect.startY;
+    //rectWArray[rectWArray.length] = rect.w;
+    //rectHArray[rectHArray.length] = rect.h;
     
-    rectColor[rectColor.length] = "#444444";
-
+    //rectColor[rectColor.length] = "#444444";
+    
     drag = false;
 }
 
 //mouse Move Event method
 function mouseMove(e) {
     if (drag) {
-        rect.w = (e.pageX - this.offsetLeft) - rect.startX;
-        rect.h = (e.pageY - this.offsetTop) - rect.startY;
+        rect.Width = (e.pageX - this.offsetLeft) - rect.startX;
+        rect.Height = (e.pageY - this.offsetTop) - rect.startY;
         
-                
         draw();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -102,7 +99,7 @@ function mouseMove(e) {
 function draw() {
     ctx.beginPath();
     ctx.fillStyle = "#444444";
-    ctx.rect(rect.startX, rect.startY, rect.w, rect.h);
+    ctx.rect(rect.startX, rect.startY, rect.Width, rect.Height);
             
     ctx.fill();
 }
@@ -111,19 +108,6 @@ function draw() {
 
 //save as image file 
 function SaveRectangle() { 
-    
-    // generate the image data 
-    var image_new = document.getelementbyid("canvas").todataurl("image/png"); 
-    image_new = image_new.replace('data:image/png;base64,', '');
-    $.ajax({
-        type: 'post',
-        url: 'HomeController/saveimage',
-        data: '{ "imagedata" : "' + image_new + '" }',
-        contenttype: 'application/json; charset=utf-8',
-        datatype: 'json',
-        success: function (msg) {
-            alert('image saved to your root folder !');
-        }
-    });   
+    jQuery.post("/Home/RectOne", { X: rect.startX, Y: rect.startY, Height: rect.Height, Width: rect.Width }, function (data) {
+    });
 }
-

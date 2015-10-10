@@ -18,6 +18,12 @@ namespace ShapeTesterWebLayer.App_Start
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "RectangleProcessor",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "RectangleProcessor", action = "Test"}
+            );
         }
     }
 }
