@@ -44,8 +44,6 @@
   <ItemGroup>
     <Compile Include="Interfaces\IRectangleMathHelper.cs" />
     <Compile Include="RectangleMathHelper.cs" />
-    <Compile Include="Interfaces\IAdder.cs" />
-    <Compile Include="Interfaces\INumberConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedObjects\DoubleRectangle.cs" />
   </ItemGroup>

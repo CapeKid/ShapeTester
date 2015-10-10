@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using ShapeTesterServiceLayer;
+﻿using System.Web.Mvc;
 using ShapeTesterServiceLayer.Interfaces;
 using ShapeTesterServiceLayer.SharedObjects;
 using ShapeTesterWebLayer.ViewModel;
@@ -9,9 +7,9 @@ namespace ShapeTesterWebLayer.Controllers
 {
     public class RectangleProcessorController : Controller
     {
-        RectangleMathHelper RectangleMathHelper { get; }
+        IRectangleMathHelper RectangleMathHelper { get; }
 
-        public RectangleProcessorController(RectangleMathHelper rectangleMathHelper)
+        public RectangleProcessorController(IRectangleMathHelper rectangleMathHelper)
         {
             RectangleMathHelper = rectangleMathHelper;
         }
