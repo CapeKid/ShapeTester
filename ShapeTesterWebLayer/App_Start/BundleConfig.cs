@@ -29,7 +29,7 @@ namespace ShapeTesterWebLayer.App_Start
 
             bundles.Add(new ScriptBundle("~/bundles/ShapeTesterWebLayer")
                 .IncludeDirectory("~/Scripts/Controllers", "*.js")
-                .Include("~/Scripts/ShapeTesterWebLayer.js"));
+                .Include("~/Scripts/RectangleTesting/ShapeTesterWebLayer.js"));
 
         }
     }

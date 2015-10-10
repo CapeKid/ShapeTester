@@ -1,26 +1,4 @@
-﻿//var HomePageController = function ($scope) {
-//    $scope.models = {
-//        numberOne: 1,
-//        numberTwo: 2
-//};
-//}
-
-//// The $inject property of every controller (and pretty much every other type of object in Angular) needs to be a string array equal to the controllers arguments, only as strings
-//HomePageController.$inject = ['$scope'];
-
-
-//var app = angular.module("myApp", []);
-//app.controller("homePageController", function ($scope) {
-
-//    var self = this;
-//    self.numberOne = "John";
-//    self.numberTwo = "Doe";
-//});
-
-
-
-//TODO: Pass object instead of use array
-//TODO: Use razor, not JS file
+﻿//TODO: Pass object instead of use array
 //TODO: Proper namespacing of javascript
 
 //public Canvas object to use in all the functions.
@@ -32,13 +10,13 @@ var ctx;
 rect1 = {},
 rect1.Width = 0
 rect1.Height = 0
+rect1.Color = "#FF0000";
 
 // Rectangle number two
 rect2 = {},
 rect2.Width = 0
 rect2.Height = 0
-
-rectangles = [rect1, rect2]
+rect2.Color = "#0000FF";
 
 drag = false;
 
@@ -49,36 +27,37 @@ var moveHandler;
 
 //Initialize the Canvas and Mouse events for Canvas
 function DrawRectangleOne() {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    
+    InitializeCanvas();
     RemoveMouseListeners();
-    AddMouseListeners(0);
+    AddMouseListeners(rect1);
     
-    return setInterval(function () { draw(0); }, 10);
+    return setInterval(function () { draw(rect1); }, 10);
 }
 
 function DrawRectangleTwo() {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    
+    InitializeCanvas();
     RemoveMouseListeners();
-    AddMouseListeners(1);
+    AddMouseListeners(rect2);
 
-    return setInterval(function () { draw(1); }, 10);
+    return setInterval(function () { draw(rect2); }, 10);
 }
 
+function InitializeCanvas()
+{
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+}
 
-function AddMouseListeners(rectangleNumber) {
+function AddMouseListeners(rectangle) {
     downHandler = function (e) {
-        mouseDown(e, rectangleNumber);
+        mouseDown(e, rectangle);
     };
     upHandler = function (e) {
-        mouseUp(e, rectangleNumber);
+        mouseUp(e, rectangle);
     };
 
     moveHandler = function (e) {
-        mouseMove(e, rectangleNumber);
+        mouseMove(e, rectangle);
     };
     
     canvas.addEventListener('mousedown', downHandler, false);
@@ -95,11 +74,12 @@ function RemoveMouseListeners(downEvent, upEvent, moveEvent)
 
 
 //Mouse down event method
-function mouseDown(e, rectangleNumber) {
-    rectangles[rectangleNumber].Width = 0;
-    rectangles[rectangleNumber].Height = 0;
-    rectangles[rectangleNumber].startX = e.pageX - canvas.offsetLeft;
-    rectangles[rectangleNumber].startY = e.pageY - canvas.offsetTop;
+function mouseDown(e, rectangle) {
+    
+    rectangle.Width = 0;
+    rectangle.Height = 0;
+    rectangle.startX = e.pageX - canvas.offsetLeft;
+    rectangle.startY = e.pageY - canvas.offsetTop;
     
     drag = true;
 }
@@ -109,37 +89,29 @@ function mouseUp(e, rectangle) {
 }
 
 //mouse Move Event method
-function mouseMove(e, rectangleNumber) {
+function mouseMove(e, rectangle) {
 
     if (drag) {
+        rectangle.Width = (e.pageX - canvas.offsetLeft) - rectangle.startX;
+        rectangle.Height = (e.pageY - canvas.offsetTop) - rectangle.startY;
         
-        rectangles[rectangleNumber].Width = (e.pageX - canvas.offsetLeft) - rectangles[rectangleNumber].startX;
-        //console.log(rectangles[rectangleNumber].Width);
-        rectangles[rectangleNumber].Height = (e.pageY - canvas.offsetTop) - rectangles[rectangleNumber].startY;
-        
-        draw(rectangleNumber);
+        draw(rectangle);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 }
 
 
 //Draw all Shaps,Text and add images 
-function draw(rectangleNumber) {
+function draw(rectangle) {
     ctx.beginPath();
-    if(rectangleNumber == 0)
-        ctx.fillStyle = "#FF0000";
-    if (rectangleNumber == 1)
-        ctx.fillStyle = "#0000FF";
-
-    ctx.rect(rectangles[rectangleNumber].startX, rectangles[rectangleNumber].startY, rectangles[rectangleNumber].Width, rectangles[rectangleNumber].Height);
-
+    ctx.fillStyle = rectangle.Color
+    ctx.rect(rectangle.startX, rectangle.startY, rectangle.Width, rectangle.Height);
     ctx.fill();
 }
 
 
-//save as image file 
-function SaveRectangle() { 
-    jQuery.post("/RectangleProcessor/ProcessRectangles",
+function TestOverlap() {
+    jQuery.post("/RectangleProcessor/TestOverlap",
         {
             rect1 : {
                 X: rect1.startX,
@@ -158,4 +130,71 @@ function SaveRectangle() {
         , function (data) {
             alert(data);
     });
+}
+
+function TestContain() {
+    jQuery.post("/RectangleProcessor/TestContain",
+        {
+            rect1: {
+                X: rect1.startX,
+                Y: rect1.startY,
+                Height: rect1.Height,
+                Width: rect1.Width
+            },
+
+            rect2: {
+                X: rect2.startX,
+                Y: rect2.startY,
+                Height: rect2.Height,
+                Width: rect2.Width
+            },
+        }
+        , function (data) {
+            alert(data);
+        });
+}
+
+function TestAdjacent() {
+    jQuery.post("/RectangleProcessor/TestAdjacent",
+        {
+            rect1: {
+                X: rect1.startX,
+                Y: rect1.startY,
+                Height: rect1.Height,
+                Width: rect1.Width
+            },
+
+            rect2: {
+                X: rect2.startX,
+                Y: rect2.startY,
+                Height: rect2.Height,
+                Width: rect2.Width
+            },
+        }
+        , function (data) {
+            alert(data);
+        });
+}
+
+function TestAll() {
+    jQuery.post("/RectangleProcessor/TestAll",
+        {
+            rect1: {
+                X: rect1.startX,
+                Y: rect1.startY,
+                Height: rect1.Height,
+                Width: rect1.Width
+            },
+
+            rect2: {
+                X: rect2.startX,
+                Y: rect2.startY,
+                Height: rect2.Height,
+                Width: rect2.Width
+            },
+        }
+        , function (data) {
+
+            alert(data);
+        });
 }

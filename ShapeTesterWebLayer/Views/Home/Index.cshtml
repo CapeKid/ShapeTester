@@ -7,7 +7,7 @@
     <title>RazorApp</title>
 </head>
 <body>
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-4">
             <h2>Comparison Options</h2>
             
@@ -32,18 +32,20 @@
                 <input type="submit" value="Are they adjacent?" />
             }
         </div>
-    </div>
+    </div>*@
     <div>
-        <SECTION style="border-style: solid; border-width: 2px; width: 1024px;">
-            <CANVAS HEIGHT="740" WIDTH="1024" ID="canvas">
-
+        <section style="border-style: solid; border-width: 2px; width: 1024px;">
+            <canvas HEIGHT="740" WIDTH="1024" ID="canvas">
                 Your browser is not supporting HTML5 Canvas .Upgrade Browser to view this program or check with Chrome or in Firefox.
-            </CANVAS>
+            </canvas>
 
             <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleOne()">Draw Rectangle One</button>
             <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="DrawRectangleTwo()">Draw Rectangle Two</button>
-            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="SaveRectangle()">Save Rectangle</button>
-        </SECTION>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestOverlap()">Rectangles overlap?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestContain()">Rectangles contain?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAdjacent()">Rectangles adjacent?</button>
+            <button style="border-style: solid; border-width: 2px; width: 100px;" onClick="TestAll()">Test All</button>
+        </section>
     </div>
 </body>
 </html>
