@@ -10,16 +10,16 @@
     rect1.Width = 0
     rect1.Height = 0
     //TODO: capitalize startX and startY
-    rect1.startX = -1
-    rect1.startY = -1
+    rect1.StartX = -1
+    rect1.StartY = -1
     rect1.Color = "#FF0000";
     
     // Rectangle number two
     rect2 = {},
     rect2.Width = 0
     rect2.Height = 0
-    rect2.startX = -1
-    rect2.startY = -1
+    rect2.StartX = -1
+    rect2.StartY = -1
     rect2.Color = "#0000FF";
 
     drag = false;
@@ -83,8 +83,8 @@
     
         rectangle.Width = 0;
         rectangle.Height = 0;
-        rectangle.startX = e.pageX - canvas.offsetLeft;
-        rectangle.startY = e.pageY - canvas.offsetTop;
+        rectangle.StartX = e.pageX - canvas.offsetLeft;
+        rectangle.StartY = e.pageY - canvas.offsetTop;
             
         drag = true;
     }
@@ -98,8 +98,8 @@
     //Mouse move event method
     function mouseMove(e, rectangle) {
         if (drag) {
-            rectangle.Width = (e.pageX - canvas.offsetLeft) - rectangle.startX;
-            rectangle.Height = (e.pageY - canvas.offsetTop) - rectangle.startY;
+            rectangle.Width = (e.pageX - canvas.offsetLeft) - rectangle.StartX;
+            rectangle.Height = (e.pageY - canvas.offsetTop) - rectangle.StartY;
         
             draw(rectangle);
             canvasContext.clearRect(0, 0, canvas.width, canvas.height);
@@ -111,7 +111,7 @@
         canvasContext.beginPath();
         canvasContext.strokeStyle = rectangle.Color
 
-        canvasContext.rect(rectangle.startX, rectangle.startY, rectangle.Width, rectangle.Height);
+        canvasContext.rect(rectangle.StartX, rectangle.StartY, rectangle.Width, rectangle.Height);
         
 
         canvasContext.stroke();

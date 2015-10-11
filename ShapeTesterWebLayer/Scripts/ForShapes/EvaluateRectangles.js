@@ -3,15 +3,15 @@
         jQuery.post("/RectangleProcessor/TestOverlap",
             {
                 rect1: {
-                    X: rect1.startX,
-                    Y: rect1.startY,
+                    StartX: rect1.StartX,
+                    StartY: rect1.StartY,
                     Height: rect1.Height,
                     Width: rect1.Width
                 },
 
                 rect2: {
-                    X: rect2.startX,
-                    Y: rect2.startY,
+                    StartX: rect2.StartX,
+                    StartY: rect2.StartY,
                     Height: rect2.Height,
                     Width: rect2.Width
                 },
@@ -25,15 +25,15 @@
         jQuery.post("/RectangleProcessor/TestContain",
             {
                 rect1: {
-                    X: rect1.startX,
-                    Y: rect1.startY,
+                    StartX: rect1.StartX,
+                    StartY: rect1.StartY,
                     Height: rect1.Height,
                     Width: rect1.Width
                 },
 
                 rect2: {
-                    X: rect2.startX,
-                    Y: rect2.startY,
+                    StartX: rect2.StartX,
+                    StartY: rect2.StartY,
                     Height: rect2.Height,
                     Width: rect2.Width
                 },
@@ -47,15 +47,15 @@
         jQuery.post("/RectangleProcessor/TestAdjacent",
             {
                 rect1: {
-                    X: rect1.startX,
-                    Y: rect1.startY,
+                    StartX: rect1.StartX,
+                    StartY: rect1.StartY,
                     Height: rect1.Height,
                     Width: rect1.Width
                 },
 
                 rect2: {
-                    X: rect2.startX,
-                    Y: rect2.startY,
+                    StartX: rect2.StartX,
+                    StartY: rect2.StartY,
                     Height: rect2.Height,
                     Width: rect2.Width
                 },
@@ -68,20 +68,18 @@
 
 
     this.testAll = function testAll(rect1, rect2) {
-
-        
         jQuery.post("/RectangleProcessor/TestAll",
             {
                 rect1: {
-                    X: rect1.startX,
-                    Y: rect1.startY,
+                    StartX: rect1.StartX,
+                    StartY: rect1.StartY,
                     Height: rect1.Height,
                     Width: rect1.Width
                 },
 
                 rect2: {
-                    X: rect2.startX,
-                    Y: rect2.startY,
+                    StartX: rect2.StartX,
+                    StartY: rect2.StartY,
                     Height: rect2.Height,
                     Width: rect2.Width
                 },
