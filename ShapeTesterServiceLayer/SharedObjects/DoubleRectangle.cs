@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-
+using System;
 namespace ShapeTesterServiceLayer.SharedObjects
 {
     /// <summary>
@@ -13,6 +13,22 @@ namespace ShapeTesterServiceLayer.SharedObjects
             Y = y;
             Width = width;
             Height = height;
+        }
+
+        /// <summary>
+        /// Used to construct a rectangle using the canvas coordinate system
+        /// </summary>
+        /// <param name="startX">Origin point of the click on the X axis</param>
+        /// <param name="startY">Origin point of the click on the Y axis</param>
+        /// <param name="drawWidth">The width of the object in the web layer (may be negative)</param>
+        /// <param name="drawHeight">The height of the object in the web layer (may be negative)</param>
+        public DoubleRectangle(int startX, int startY, int drawWidth, int drawHeight)
+        {
+            X = drawWidth > 0 ? startX : startX + drawWidth;
+            Y = drawHeight > 0 ? startY : startY + drawHeight;
+
+            Width = Math.Abs(drawWidth);
+            Height = Math.Abs(drawHeight);
         }
 
         //The lower left most x coordinate

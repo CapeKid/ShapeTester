@@ -9,12 +9,17 @@
     rect1 = {},
     rect1.Width = 0
     rect1.Height = 0
+    //TODO: capitalize startX and startY
+    rect1.startX = -1
+    rect1.startY = -1
     rect1.Color = "#FF0000";
-
+    
     // Rectangle number two
     rect2 = {},
     rect2.Width = 0
     rect2.Height = 0
+    rect2.startX = -1
+    rect2.startY = -1
     rect2.Color = "#0000FF";
 
     drag = false;
@@ -80,7 +85,7 @@
         rectangle.Height = 0;
         rectangle.startX = e.pageX - canvas.offsetLeft;
         rectangle.startY = e.pageY - canvas.offsetTop;
-    
+            
         drag = true;
     }
 
@@ -88,9 +93,6 @@
     function mouseUp(e, rectangle) {
         drag = false;
         evaluateRectangles.testAll(rect1, rect2);
-        //evaluateRectangles.testAdjacent(rect1, rect2);
-        //evaluateRectangles.testContain(rect1, rect2);
-        //evaluateRectangles.testOverlap(rect1, rect2);
     }
 
     //Mouse move event method
@@ -108,7 +110,10 @@
     function draw(rectangle) {
         canvasContext.beginPath();
         canvasContext.strokeStyle = rectangle.Color
+
         canvasContext.rect(rectangle.startX, rectangle.startY, rectangle.Width, rectangle.Height);
+        
+
         canvasContext.stroke();
     }
 }

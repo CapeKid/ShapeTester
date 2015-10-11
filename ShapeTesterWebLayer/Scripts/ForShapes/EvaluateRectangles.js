@@ -64,9 +64,12 @@
                 $("#isAdjacent").text(data);
             });
     }
+    
 
 
     this.testAll = function testAll(rect1, rect2) {
+
+        
         jQuery.post("/RectangleProcessor/TestAll",
             {
                 rect1: {

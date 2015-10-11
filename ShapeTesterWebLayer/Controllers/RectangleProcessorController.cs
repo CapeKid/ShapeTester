@@ -99,6 +99,5 @@ namespace ShapeTesterWebLayer.Controllers
                 isAdjacent = isAdjacent
             });
         }
-        
     }
 }
