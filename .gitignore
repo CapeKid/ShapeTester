@@ -1,22 +1,17 @@
-/*/obj/Debug/*
-/*/bin/Debug/*
-/*/obj/Release/*
-/*/bin/Release/*
-/*/bin/
-/*/bin/Debug/
-/*/bin/Release/
-/*/obj/Debug/TempPE
-/*/obj/Debug/
-/*/obj/Release/TempPE
-/*/obj/Release
-*.user
+# User-specific files
 *.suo
-*.pdb
+*.user
+*.sln.docstates
 
-/ShapeTesterServiceLayer/bin/Debug/*
-/ShapeTesterServiceLayer.Tests/bin/Debug/*
-/ShapeTesterWebLayer/bin/Debug/*
-/ShapeTesterWebLayer.Tests/bin/Debug/*
 
-/ShapeTesterWebLayer/bin/*
-/ShapeTesterWebLayer/obj/Debug/*
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+[Bb]in/
+[Oo]bj/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*

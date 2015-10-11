@@ -24,6 +24,7 @@ namespace ShapeTesterServiceLayer.SharedObjects
         /// <param name="drawHeight">The height of the object in the web layer (may be negative)</param>
         public DoubleRectangle(int startX, int startY, int drawWidth, int drawHeight)
         {
+            //TODO: Move to converter?
             X = drawWidth > 0 ? startX : startX + drawWidth;
             Y = drawHeight > 0 ? startY : startY + drawHeight;
 
