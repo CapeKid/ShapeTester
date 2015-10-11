@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using ShapeTesterServiceLayer.Interfaces;
-using ShapeTesterServiceLayer.SharedObjects;
 using ShapeTesterWebLayer.ViewModel;
 
 namespace ShapeTesterWebLayer.Controllers
