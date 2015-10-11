@@ -7,22 +7,24 @@ namespace ShapeTesterWebLayer.Controllers
 {
     public class RectangleProcessorController : Controller
     {
-        IRectangleMathHelper RectangleMathHelper { get; }
+        private IRectangleMathHelper RectangleMathHelper { get; }
+        private IDoubleRectangleFactory DoubleRectangleFactory { get; }
 
-        public RectangleProcessorController(IRectangleMathHelper rectangleMathHelper)
+        public RectangleProcessorController(IRectangleMathHelper rectangleMathHelper, IDoubleRectangleFactory doubleRectangleFactory)
         {
             RectangleMathHelper = rectangleMathHelper;
+            DoubleRectangleFactory = doubleRectangleFactory;
         }
 
         public ActionResult TestOverlap(Rectangle rect1, Rectangle rect2)
         {
-            var doubleRectangle1 = new DoubleRectangle(
+            var doubleRectangle1 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect1.StartX,
                 rect1.StartY,
                 rect1.Width,
                 rect1.Height);
 
-            var doubleRectangle2 = new DoubleRectangle(
+            var doubleRectangle2 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect2.StartX,
                 rect2.StartY,
                 rect2.Width,
@@ -35,13 +37,13 @@ namespace ShapeTesterWebLayer.Controllers
 
         public ActionResult TestAdjacent(Rectangle rect1, Rectangle rect2)
         {
-            var doubleRectangle1 = new DoubleRectangle(
+            var doubleRectangle1 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect1.StartX,
                 rect1.StartY,
                 rect1.Width,
                 rect1.Height);
 
-            var doubleRectangle2 = new DoubleRectangle(
+            var doubleRectangle2 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect2.StartX,
                 rect2.StartY,
                 rect2.Width,
@@ -54,13 +56,13 @@ namespace ShapeTesterWebLayer.Controllers
 
         public ActionResult TestContain(Rectangle rect1, Rectangle rect2)
         {
-            var doubleRectangle1 = new DoubleRectangle(
+            var doubleRectangle1 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect1.StartX,
                 rect1.StartY,
                 rect1.Width,
                 rect1.Height);
 
-            var doubleRectangle2 = new DoubleRectangle(
+            var doubleRectangle2 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect2.StartX,
                 rect2.StartY,
                 rect2.Width,
@@ -74,13 +76,13 @@ namespace ShapeTesterWebLayer.Controllers
         
         public ActionResult TestAll(Rectangle rect1, Rectangle rect2)
         {
-            var doubleRectangle1 = new DoubleRectangle(
+            var doubleRectangle1 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect1.StartX,
                 rect1.StartY,
                 rect1.Width,
                 rect1.Height);
 
-            var doubleRectangle2 = new DoubleRectangle(
+            var doubleRectangle2 = DoubleRectangleFactory.CreateDoubleRectangleFromWebCoordinates(
                 rect2.StartX,
                 rect2.StartY,
                 rect2.Width,

@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Practices.Unity;
 using ShapeTesterServiceLayer.Interfaces;
-using RectangleMathHelper = ShapeTesterServiceLayer.RectangleMathHelper;
+using ShapeTesterServiceLayer;
 
 namespace ShapeTesterWebLayer.App_Start
 {
@@ -37,6 +37,7 @@ namespace ShapeTesterWebLayer.App_Start
             // container.LoadConfiguration();
 
             container.RegisterType<IRectangleMathHelper, RectangleMathHelper>();
+            container.RegisterType<IDoubleRectangleFactory, DoubleRectangleFactory>();
         }
     }
 }
