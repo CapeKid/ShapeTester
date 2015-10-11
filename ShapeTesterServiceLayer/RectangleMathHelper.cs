@@ -1,5 +1,4 @@
-﻿using System;
-using ShapeTesterServiceLayer.Interfaces;
+﻿using ShapeTesterServiceLayer.Interfaces;
 using ShapeTesterServiceLayer.SharedObjects;
 
 namespace ShapeTesterServiceLayer
